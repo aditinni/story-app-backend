@@ -23,12 +23,11 @@ public class JwtFilter extends OncePerRequestFilter {
     private CustomUserDetailsService service;
 
     // --- THE FIX ---
-    // This explicitly tells Spring NOT to run the token check on login/signup requests
-    // or browser pre-flight (OPTIONS) requests.
+    // Uses getRequestURI() and contains() to bypass cloud proxy routing issues
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String path = request.getServletPath();
-        return path.startsWith("/api/auth") || request.getMethod().equals("OPTIONS");
+        String path = request.getRequestURI();
+        return path.contains("/api/auth") || request.getMethod().equals("OPTIONS");
     }
 
     @Override
