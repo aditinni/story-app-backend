@@ -63,7 +63,7 @@ public class SecurityConfig {
 
         // Add your Vercel URL (and localhost for future testing)
         configuration.setAllowedOrigins(List.of(
-                "https://my-react-app-nine-swart.vercel.app",
+                "https://my-react-app-nine-swart.vercel.app/",
                 "http://localhost:5173"
         ));
 

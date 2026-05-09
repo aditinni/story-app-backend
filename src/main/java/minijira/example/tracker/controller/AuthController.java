@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "https://my-react-app-nine-swart.vercel.app")
+@CrossOrigin(origins = "https://my-react-app-nine-swart.vercel.app/")
 public class AuthController {
 
     @Autowired
