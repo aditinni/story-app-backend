@@ -22,6 +22,15 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private CustomUserDetailsService service;
 
+    // --- THE FIX ---
+    // This explicitly tells Spring NOT to run the token check on login/signup requests
+    // or browser pre-flight (OPTIONS) requests.
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getServletPath();
+        return path.startsWith("/api/auth") || request.getMethod().equals("OPTIONS");
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, java.io.IOException {
 
